@@ -1,0 +1,39 @@
+.full-blog-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+  }
+  
+  .full-blog-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .full-blog-container p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .full-blog-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .full-blog-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+.loading-blog {
+    text-align: center;
+    font-size: 38px;
+    font-weight: 800;
+    margin: 20px;
+  }
