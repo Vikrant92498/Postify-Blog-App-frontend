@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from 'react';
+import { BrowserRouter as Router, Routes , Route} from 'react-router-dom';
+import BlogList from './Components/BlogList';
+import FullBlog from './Components/FullBlogPage';
+import CreateBlog from './Components/CreateBlog';
+import LoginForm from './Components/Login';
+import NavBar from './Components/NavBar';
+import RegisterForm from './Components/Register';
+import EditBlogPage from './Components/EditBlog';
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app-container">
+        <NavBar />
+      <Routes>
+        <Route exact path="/" element={<BlogList/>} />
+        <Route path="/blog/:id" element={<FullBlog/>} />
+        <Route path="/blog/edit/:id" element={<EditBlogPage/>} />
+        <Route path="/create" element={<CreateBlog/>} />
+        <Route path="/login" element={<LoginForm/>} />
+        <Route path="/register" element={<RegisterForm/>} />
+      </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
+
