@@ -12,6 +12,7 @@ const App = () => {
     <Router>
       <div className="app-container">
         <NavBar />
+        
       <Routes>
         <Route exact path="/" element={<BlogList/>} />
         <Route path="/blog/:id" element={<FullBlog/>} />
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/login" element={<LoginForm/>} />
         <Route path="/register" element={<RegisterForm/>} />
       </Routes>
+    
       </div>
     </Router>
   );

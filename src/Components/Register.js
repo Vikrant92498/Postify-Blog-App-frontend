@@ -16,8 +16,13 @@ const Register= () => {
         email,
         password
     }
-    axios.post('http://localhost:5000/api/auth/register',registerDetails)
+    axios.post('http://localhost:5000/api/auth/register',registerDetails,{
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
     .then(res=>{
+        navigate('/');
         console.log(res);
     })
     .catch(err=>{

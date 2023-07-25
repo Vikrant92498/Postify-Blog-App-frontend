@@ -3,22 +3,64 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../css/FullBlogPage.css'
+import { useToast } from '@chakra-ui/react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart ,faArrowLeft, faBucket,faPen } from '@fortawesome/free-solid-svg-icons';
 const FullBlogPage = () => {
     const { id } = useParams();
     const [blogData,setBlogData] = useState();
+    const [loggedUser,setLoggedUser] = useState();
     const navigate = useNavigate();
-
+    const [likesCount,setLikeCount] = useState();
+    const [isLiked,setLiked] = useState();
+    const toast = useToast()
+    const [logged_userId,setId] = useState();
+    const likePost = ()=>{
+      const Likepost = {
+        logged_userId
+      };
+  
+      axios.post(`http://localhost:5000/api/posts/like/${id}`, Likepost)
+        .then(response => {
+          setLikeCount(response.data.likesCount);
+          setLiked(response.data.isLiked);
+        })
+        .catch(error => { 
+          console.error(error);
+        }); 
+    }
+    useEffect(()=>{
+            const user_info = localStorage.getItem("user_data");
+            const userData = JSON.parse(user_info);
+            if(!userData) return ;
+            setLoggedUser(userData);
+            setId(userData._id);
+            likePost();
+            
+    },[])
     useEffect(() => {
-        
-            axios.get(`http://localhost:5000/api/posts/${id}`)
+            const token = localStorage.getItem("token");
+            axios.get(`http://localhost:5000/api/posts/${id}`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            })
             .then(response=>{
-                console.log(response.data)
                 setBlogData(response.data);
+                setLikeCount(response.data.likesCount);
             })
-            .catch(err=>{
-                console.log(err);
+            .catch((err)=>{
+              //Please login First 
+              navigate('/login');
+              toast({
+                title:"Please Login first",
+                status:"warning",
+                duration:5000,
+                isClosable:true,
+                position:"bottom"
+              });
             })
-      }, [id,navigate]);
+      }, [id]);
       if (!blogData) {
         return <div className='loading-blog'>Loading...</div>;
       }
@@ -30,18 +72,51 @@ const FullBlogPage = () => {
             console.log(err);
         })
     }
+    const handleGoBack = () => {
+      // Go back to the previous path using the navigate function
+      navigate(-1);
+    };
+    
     const editBlog = ()=>{
         navigate(`/blog/edit/${id}`,{replace: false })
     }
+    const canEditOrDelete = loggedUser && blogData && loggedUser._id === blogData.author._id;
     return (
       <div className="full-blog-container">
-        <h2>{blogData.title}</h2>
-        <p>{blogData.content}</p>
-        <p>{blogData.author}</p>
-        <button onClick={deleteBlog} style={{background:"red"}}>Delete this Blog</button>
-        <button onClick={editBlog} >Edit this Blog</button>
-      </div>
-    );
+        <div className="header">
+          
+            <FontAwesomeIcon onClick={handleGoBack} className='back-arrow' icon={faArrowLeft} />
+     
+          {canEditOrDelete && (
+    <div>
+      <button onClick={deleteBlog} className="delete-button" style={{margin:'3px',background:'red'}}>
+        <FontAwesomeIcon icon={faBucket} />
+        Delete
+      </button>
+      <button onClick={editBlog} className="edit-button">
+      <FontAwesomeIcon icon={faPen} />
+        Edit
+      </button>
+    </div>
+  )}
+    </div>
+  <img src={blogData.image} alt="" className="blog-image" />
+  <h2>{blogData.title}</h2>
+  <hr />
+  <p>{blogData.content}</p>
+  <div className="footer">
+            <span className="blog-box__author">By: {blogData.author.username}</span>
+            <span className='like-and-comments'>
+            <button className={`like-button ${isLiked? 'liked' : 'not-liked'}`} onClick={likePost}>
+      <FontAwesomeIcon icon={faHeart} />
+      {likesCount}
+    </button>
+            </span>
+  </div>
+  
+</div>
+
+    ); 
     
 }
 

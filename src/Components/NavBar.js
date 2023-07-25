@@ -1,16 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {Link} from 'react-router-dom'
 import '../css/navBar.css'
+import { useNavigate} from "react-router-dom";
 const NavBar = ()=>{
+  const [loggedUser,setLoggedUser] = useState();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const user_info = localStorage.getItem("user_data");
+    setLoggedUser(user_info);
+  }, [loggedUser]);
+  const logoutHandler = ()=>{
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_data");
+    navigate("/", { replace: true })
+    setLoggedUser(undefined);
+  }
     return (
       <nav className="navbar">
       <div className="navbar__left">
-        <h1 className="navbar__title">Postify</h1>
+        <h1 className="navbar__title"><Link to="/" style={{textDecoration:"none"}}>Postify</Link></h1>
       </div>
       <div className="navbar__right">
-        <button className="navbar__button"><Link to="/login">Login</Link></button>
-        <button className="navbar__button"><Link to="/create">Create Blog</Link></button>
-        <button className="navbar__button"><Link to="/">Refresh</Link></button>
+        <ul className="navbar__list">
+          <li className="navbar__item"><Link to="/create" className="navbar__link">Create Blog</Link></li>
+          {!loggedUser && (
+            <li className="navbar__item">
+              <Link to="/login" className="navbar__link">Login</Link>
+            </li>
+          )}
+           {loggedUser && (
+            <li className="navbar__item">
+              <Link to="/" className="navbar__link" onClick={logoutHandler}>Logout</Link>
+            </li>
+          )}
+        </ul>
       </div>
     </nav>
       );

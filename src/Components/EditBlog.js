@@ -23,7 +23,6 @@ const EditBlog = () => {
       }, [id,navigate]);
       const handleSubmit = (e) => {
         e.preventDefault();
-    
         const newPost = {
           title,
           content,

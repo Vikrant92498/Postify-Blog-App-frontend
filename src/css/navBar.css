@@ -13,6 +13,7 @@
   
   .navbar__title {
     margin: 0;
+    cursor: pointer;
   }
   
   .navbar__right {
@@ -20,7 +21,24 @@
     align-items: center;
   }
   
-  .navbar__button {
-    margin-right: 10px;
+  .navbar__list {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+  }
+  .navbar__item {
+    margin-left: 10px;
+  }
+  .navbar__link {
+    color: #222222;
+    text-decoration: none;
+    padding: 16px 8px;
+  }
+  
+  /* Hover effect for the links */
+  .navbar__link:hover {
+    background-color: #e7e7e7;
   }
   

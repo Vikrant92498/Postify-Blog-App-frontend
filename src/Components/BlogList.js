@@ -12,8 +12,8 @@ const BlogList = () => {
         .catch(err=>{
             console.log(err);
         })
-    },[])
-  return (
+    },[]) 
+  return ( 
     <div className='blog-container'>
       {blogs?(
          blogs.map(blog => (
@@ -21,7 +21,8 @@ const BlogList = () => {
               key={blog.id}
               id={blog._id}
               title={blog.title}
-              author={blog.author}
+              image = {blog.image}
+              author={blog.author.username}
               content={blog.content.substring(0, 50)}
             />
           ))
