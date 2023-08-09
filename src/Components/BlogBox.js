@@ -39,6 +39,7 @@ const BlogBox = ({id, title,image, author, content ,likeCount,likedBy}) => {
       if(isUserLiked) setLiked(true);
       
     }
+     // eslint-disable-next-line
   },[]) 
   return (  
     <div className="blog-box"> 

@@ -58,6 +58,7 @@ const FullBlogPage = () => {
                 position:"bottom"
               });
             })
+             // eslint-disable-next-line
       }, [id]);
       if (!blogData) {
         return <div className='loading-blog'>Loading...</div>;

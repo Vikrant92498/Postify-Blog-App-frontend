@@ -35,7 +35,8 @@ const CreateBlog = () => {
       useEffect(()=>{
         if(!loggedUser){
           navigate('/login')
-        }      
+        } 
+         // eslint-disable-next-line     
       },[navigate])
       return (
         <div className="create-blog-container">

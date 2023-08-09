@@ -81,7 +81,7 @@ const Register= () => {
         <div className="btn-container">
         <button type="submit" className='btn'>Submit</button>
         </div>
-        <span>Already Registered?<a onClick={handleClick} style={{cursor:'pointer',color:'#00f1ff'}}>Log in</a></span>
+        <span>Already Registered?<span onClick={handleClick} style={{cursor:'pointer',color:'#00f1ff'}}>Log in</span></span>
         
       </form>
     </div>

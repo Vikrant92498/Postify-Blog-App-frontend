@@ -20,6 +20,7 @@ const EditBlog = () => {
             .catch(err=>{
                 console.log(err);
             })
+             // eslint-disable-next-line
       }, [id,navigate]);
       const handleSubmit = (e) => {
         e.preventDefault();

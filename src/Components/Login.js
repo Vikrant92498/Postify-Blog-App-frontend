@@ -69,7 +69,7 @@ const Login = () => {
         <div className="btn-container">
         <button type="submit" className='btn' >Submit</button>
         </div>
-        <span>Not registered yet?<a onClick={handleClick} style={{cursor:'pointer',color:'#00f1ff'}}>Register</a></span>
+        <span>Not registered yet?<span onClick={handleClick} style={{cursor:'pointer',color:'#00f1ff'}}>Register</span></span>
         
       </form>
     </div>
