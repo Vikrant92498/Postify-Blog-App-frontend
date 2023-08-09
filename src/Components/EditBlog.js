@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../css/EditBlog.css'
+import MyContext from '../MyContext';
 const EditBlog = () => {
+    const loggedUser = useContext(MyContext);
     const { id } = useParams();
     const [title,setTitle] = useState();
     const [content,setContent] = useState();
     const navigate = useNavigate();
-
     useEffect(() => {
-        
-            axios.get(`http://localhost:5000/api/posts/${id}`)
+            console.log(loggedUser);
+            axios.get(`https://postify-kkr9.onrender.com/api/posts/${id}`)
             .then(response=>{
-                console.log(response);
                 setTitle(response.data.title);
                 setContent(response.data.content);
             })
@@ -26,10 +26,10 @@ const EditBlog = () => {
         const newPost = {
           title,
           content,
-          author:"unknown person"
+          author:loggedUser._id
         };
-    
-        axios.put(`http://localhost:5000/api/posts/${id}`, newPost)
+     
+        axios.put(`https://postify-kkr9.onrender.com/api/posts/${id}`, newPost)
           .then(response => {
             console.log(response.data);
             // Reset form values

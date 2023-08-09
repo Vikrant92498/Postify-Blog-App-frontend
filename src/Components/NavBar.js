@@ -18,7 +18,7 @@ const NavBar = ()=>{
     return (
       <nav className="navbar">
       <div className="navbar__left">
-        <h1 className="navbar__title"><Link to="/" style={{textDecoration:"none"}}>Postify</Link></h1>
+        <h1 className="navbar__title"><Link to="/" style={{textDecoration:"none" ,color:"black"}}>Postify</Link></h1>
       </div>
       <div className="navbar__right">
         <ul className="navbar__list">

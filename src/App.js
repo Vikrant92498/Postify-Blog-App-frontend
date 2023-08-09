@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes , Route} from 'react-router-dom';
 import BlogList from './Components/BlogList';
 import FullBlog from './Components/FullBlogPage';
@@ -7,8 +7,19 @@ import LoginForm from './Components/Login';
 import NavBar from './Components/NavBar';
 import RegisterForm from './Components/Register';
 import EditBlogPage from './Components/EditBlog';
+import myContext from './MyContext'
+import { useEffect } from 'react';
+import './App.css'
 const App = () => {
+  const [loggedUser,setLoggedUser]=useState();
+  useEffect(()=>{
+    const user_info = localStorage.getItem("user_data");
+    const userData = JSON.parse(user_info);
+    if(!userData) return ;
+    setLoggedUser(userData);
+},[])
   return (
+    <myContext.Provider value={loggedUser}>
     <Router>
       <div className="app-container">
         <NavBar />
@@ -24,6 +35,7 @@ const App = () => {
     
       </div>
     </Router>
+    </myContext.Provider>
   );
 };
 

@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import axios from 'axios';
 import '../css/CreateBlog.css'
 import { useNavigate } from 'react-router-dom';
+import MyContext from '../MyContext';
 const CreateBlog = () => {
+    const loggedUser = useContext(MyContext);
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [loggedUser,setLoggedUser] = useState();
     const [imageAdd , setImage] = useState();
     const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         const newPost = {
           title,
           content,
@@ -17,7 +19,7 @@ const CreateBlog = () => {
           author:loggedUser._id,
         };
        
-        axios.post('http://localhost:5000/api/posts', newPost)
+        axios.post('https://postify-kkr9.onrender.com/api/posts', newPost)
           .then(response => {
             //console.log(response.data);
             // Reset form values
@@ -31,14 +33,9 @@ const CreateBlog = () => {
           }); 
       };
       useEffect(()=>{
-        const user_info = localStorage.getItem("user_data");
-        if(!user_info){
+        if(!loggedUser){
           navigate('/login')
         }      
-        else{ 
-          const userData = JSON.parse(user_info);
-          setLoggedUser(userData);
-        }
       },[navigate])
       return (
         <div className="create-blog-container">
@@ -61,6 +58,7 @@ const CreateBlog = () => {
                 id="content"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
+                wrap='hard'
               ></textarea>
             </div>
             <div>

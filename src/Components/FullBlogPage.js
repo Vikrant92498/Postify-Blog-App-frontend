@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -6,21 +6,22 @@ import '../css/FullBlogPage.css'
 import { useToast } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart ,faArrowLeft, faBucket,faPen } from '@fortawesome/free-solid-svg-icons';
+import MyContext from '../MyContext';
 const FullBlogPage = () => {
+    const loggedUser = useContext(MyContext);
     const { id } = useParams();
     const [blogData,setBlogData] = useState();
-    const [loggedUser,setLoggedUser] = useState();
     const navigate = useNavigate();
     const [likesCount,setLikeCount] = useState();
-    const [isLiked,setLiked] = useState();
+    const [isLiked,setLiked] = useState(false);
     const toast = useToast()
-    const [logged_userId,setId] = useState();
+    //const [logged_userId,setId] = useState();
     const likePost = ()=>{
       const Likepost = {
-        logged_userId
+        logged_userId:loggedUser._id
       };
   
-      axios.post(`http://localhost:5000/api/posts/like/${id}`, Likepost)
+      axios.post(`https://postify-kkr9.onrender.com/api/posts/like/${id}`, Likepost)
         .then(response => {
           setLikeCount(response.data.likesCount);
           setLiked(response.data.isLiked);
@@ -29,18 +30,13 @@ const FullBlogPage = () => {
           console.error(error);
         }); 
     }
-    useEffect(()=>{
-            const user_info = localStorage.getItem("user_data");
-            const userData = JSON.parse(user_info);
-            if(!userData) return ;
-            setLoggedUser(userData);
-            setId(userData._id);
-            likePost();
-            
-    },[])
+
     useEffect(() => {
             const token = localStorage.getItem("token");
-            axios.get(`http://localhost:5000/api/posts/${id}`, {
+            if(!token){
+              navigate('/login')
+            }
+            axios.get(`https://postify-kkr9.onrender.com/api/posts/${id}`, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
@@ -48,7 +44,9 @@ const FullBlogPage = () => {
             .then(response=>{
                 setBlogData(response.data);
                 setLikeCount(response.data.likesCount);
-            })
+                const isUserLiked = response.data.likedBy.includes(loggedUser._id);
+                if(isUserLiked){ setLiked(true);}
+            })     
             .catch((err)=>{
               //Please login First 
               navigate('/login');
@@ -65,7 +63,7 @@ const FullBlogPage = () => {
         return <div className='loading-blog'>Loading...</div>;
       }
     const deleteBlog=()=>{
-        axios.delete(`http://localhost:5000/api/posts/${id}`).then((res)=>{
+        axios.delete(`https://postify-kkr9.onrender.com/api/posts/${id}`).then((res)=>{
             console.log(res);
             navigate('/');
         }).catch(err=>{

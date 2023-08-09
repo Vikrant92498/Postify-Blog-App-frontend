@@ -16,7 +16,7 @@ const Register= () => {
         email,
         password
     }
-    axios.post('http://localhost:5000/api/auth/register',registerDetails,{
+    axios.post('https://postify-kkr9.onrender.com/api/auth/register',registerDetails,{
       headers: {
         "Content-Type": "application/json",
       },
@@ -35,8 +35,9 @@ const Register= () => {
   }
   return (
     <div className="login-container">
-      <h2>Create your Account</h2>
+      
       <form className="login-form" onSubmit={handleSubmit}>
+        <h2>Register</h2>
         <div className="form-group">
           <label htmlFor="username">Username:</label>
           <input
@@ -79,8 +80,8 @@ const Register= () => {
         </div>
         <div className="btn-container">
         <button type="submit" className='btn'>Submit</button>
-        <button onClick={handleClick} className='btn'>Log In</button>
         </div>
+        <span>Already Registered?<a onClick={handleClick} style={{cursor:'pointer',color:'#00f1ff'}}>Log in</a></span>
         
       </form>
     </div>

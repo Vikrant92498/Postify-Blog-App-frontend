@@ -5,8 +5,9 @@ import '../css/BlogList.css'
 const BlogList = () => {
     const [blogs,setBlogs] = useState();
     useEffect(()=>{
-        axios.get('http://localhost:5000/api/posts')
+        axios.get('https://postify-kkr9.onrender.com/api/posts')
         .then(blog=>{
+          console.log(blog);
             setBlogs(blog.data)
         })
         .catch(err=>{
@@ -24,6 +25,8 @@ const BlogList = () => {
               image = {blog.image}
               author={blog.author.username}
               content={blog.content.substring(0, 50)}
+              likeCount={blog.likesCount}
+              likedBy={blog.likedBy}
             />
           ))
       ):(<div>Fetching</div>)}

@@ -15,7 +15,7 @@ const Login = () => {
         password
     }
     // Perform validation or submit logic 
-    axios.post('http://localhost:5000/api/auth/login',loginDetails,{
+    axios.post('https://postify-kkr9.onrender.com/api/auth/login',loginDetails,{
       headers: {
         'Content-Type': 'application/json',
       },
@@ -37,18 +37,15 @@ const Login = () => {
   const handleClick = ()=>{
     navigate('/register')
   }
-  const handleClick2 = ()=>{
-    setEmail("abcd1234@gmail.com");
-    setPassword("abcd1234");
-    handleSubmit();
-  }
+   
   if (logging) {
     return <div className='loading-blog'>Logging In Please Wait</div>;
   }
-  return (
+  return ( 
     <div className="login-container">
-      <h2>Login</h2>
+      
       <form className="login-form" onSubmit={handleSubmit}>
+        <h2>Login</h2>
         <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
@@ -71,9 +68,9 @@ const Login = () => {
         </div>
         <div className="btn-container">
         <button type="submit" className='btn' >Submit</button>
-        <button onClick={handleClick} className='btn'>Register</button>
-        <button onClick={handleClick2} className='btn'>Guest Login</button>
         </div>
+        <span>Not registered yet?<a onClick={handleClick} style={{cursor:'pointer',color:'#00f1ff'}}>Register</a></span>
+        
       </form>
     </div>
   );
