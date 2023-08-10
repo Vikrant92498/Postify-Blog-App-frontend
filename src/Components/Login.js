@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../css/Login.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Loading from './Loading';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,8 +22,6 @@ const Login = () => {
       },
     })
     .then(res=>{
-        //const data = res.json();
-        console.log(res)
         localStorage.setItem("token", res.data.token);
         const userDataJSON = JSON.stringify(res.data.user);
         localStorage.setItem("user_data", userDataJSON);
@@ -39,7 +38,8 @@ const Login = () => {
   }
    
   if (logging) {
-    return <div className='loading-blog'>Logging In Please Wait</div>;
+    return <Loading/>
+    //return <div className='loading-blog'>Logging In Please Wait</div>;
   }
   return ( 
     <div className="login-container">

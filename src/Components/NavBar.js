@@ -14,7 +14,7 @@ const NavBar = ()=>{
     localStorage.removeItem("user_data");
     navigate("/", { replace: true })
     setLoggedUser(undefined);
-  }
+  } 
     return (
       <nav className="navbar">
       <div className="navbar__left">

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import BlogBox from './BlogBox'
 import '../css/BlogList.css'
+import Loading from './Loading'
 const BlogList = () => {
     const [blogs,setBlogs] = useState();
     useEffect(()=>{
@@ -24,12 +25,12 @@ const BlogList = () => {
               title={blog.title}
               image = {blog.image}
               author={blog.author.username}
-              content={blog.content.substring(0, 50)}
+              content={blog.content.substring(0, 80)}
               likeCount={blog.likesCount}
               likedBy={blog.likedBy}
             />
           ))
-      ):(<div>Fetching</div>)}
+      ):(<Loading/>)}
     </div>
   )
 }

@@ -7,6 +7,7 @@ import { useToast } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart ,faArrowLeft, faBucket,faPen } from '@fortawesome/free-solid-svg-icons';
 import MyContext from '../MyContext';
+import Loading from './Loading';
 const FullBlogPage = () => {
     const loggedUser = useContext(MyContext);
     const { id } = useParams();
@@ -34,12 +35,20 @@ const FullBlogPage = () => {
     useEffect(() => {
             const token = localStorage.getItem("token");
             if(!token){
+              toast({
+                title:"Please Login first",
+                status:"warning",
+                duration:5000,
+                isClosable:true,
+                position:"bottom"
+              });
               navigate('/login')
+              return;
             }
             axios.get(`https://postify-kkr9.onrender.com/api/posts/${id}`, {
               headers: {
                 Authorization: `Bearer ${token}`,
-              },
+              }, 
             })
             .then(response=>{
                 setBlogData(response.data);
@@ -49,19 +58,20 @@ const FullBlogPage = () => {
             })     
             .catch((err)=>{
               //Please login First 
-              navigate('/login');
               toast({
-                title:"Please Login first",
+                title:"Error Occured",
                 status:"warning",
                 duration:5000,
                 isClosable:true,
                 position:"bottom"
               });
+              navigate('/login');
             })
              // eslint-disable-next-line
       }, [id]);
       if (!blogData) {
-        return <div className='loading-blog'>Loading...</div>;
+        return <Loading/>
+        //return <div className='loading-blog'>Loading...</div>;
       }
     const deleteBlog=()=>{
         axios.delete(`https://postify-kkr9.onrender.com/api/posts/${id}`).then((res)=>{

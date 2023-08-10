@@ -1,0 +1,36 @@
+.loading-text-words{
+  font-size: 2rem;
+  color: white;
+  font-family: cursive;
+}
+.ball{
+  position: absolute;
+  width: 30px;
+  top:5px;
+  height: 35px;
+  background-color: #000000;
+  box-shadow: 0 0 20px 15px #000000;
+  border-radius: 50%;
+  animation: moveToRight 1s ease-in infinite alternate;
+  animation-delay: 0s;
+}
+.loading{
+  display: flex;
+  height: 100vh;
+  width: 98.2vw;
+  background-color: black;
+}
+.loading-text{
+  display: block;
+  position: relative;
+  margin: auto;
+  margin-top: 15rem;
+}
+@keyframes moveToRight {
+  0% {
+    transform: translateX(-9px);
+  }
+  100% {
+    transform: translateX(200px);
+  }
+}

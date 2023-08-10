@@ -45,7 +45,8 @@ const BlogBox = ({id, title,image, author, content ,likeCount,likedBy}) => {
     <div className="blog-box"> 
         <img src={image} alt="" />
         <h2 className="blog-box__title">{title}</h2>
-        <span className="blog-box__content">{content}</span>
+        <hr />
+        <span className="blog-box__content">{content}...</span>
         <Link to={`/blog/${id}`}>Read More</Link>
         <div className="footer">
             <span className="blog-box__author">By: {author}</span>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../css/EditBlog.css'
 import MyContext from '../MyContext';
+import Loading from './Loading';
 const EditBlog = () => {
     const loggedUser = useContext(MyContext);
     const { id } = useParams();
@@ -43,7 +44,7 @@ const EditBlog = () => {
           });
       };
       if (!title) {
-        return <div>Loading...</div>;
+        return <Loading/>;
       }
     
   return (

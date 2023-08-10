@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../css/Login.css'
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '@chakra-ui/react';
 import axios from 'axios'
 const Register= () => {
   const [username, setUsername] = useState('');
@@ -8,6 +9,7 @@ const Register= () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
+  const toast = useToast();
   const handleSubmit = (e) => {
     e.preventDefault();
     if(password!==confirmPassword) return ;
@@ -20,10 +22,18 @@ const Register= () => {
       headers: {
         "Content-Type": "application/json",
       },
-    })
+    }) 
     .then(res=>{
-        navigate('/');
-        console.log(res);
+      toast({
+        title:"Login Now",
+        status:"success",
+        duration:5000,
+        isClosable:true,
+        position:"bottom"
+      });
+        navigate('/login');
+
+        //console.log(res);
     })
     .catch(err=>{
         console.log(err);
