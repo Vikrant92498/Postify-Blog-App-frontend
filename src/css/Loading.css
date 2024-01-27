@@ -14,10 +14,12 @@
   animation: moveToRight 1s ease-in infinite alternate;
   animation-delay: 0s;
 }
+
 .loading{
-  display: flex;
-  height: 100vh;
-  width: 98.2vw;
+  display: flex; 
+  height: max-content;
+  height: 87.3vh;
+  width: 100%;
   background-color: black;
 }
 .loading-text{

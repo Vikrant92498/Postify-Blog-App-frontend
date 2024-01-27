@@ -63,7 +63,7 @@ const FullBlogPage = () => {
                 status:"warning",
                 duration:5000,
                 isClosable:true,
-                position:"bottom"
+                position:"bottom" 
               });
               navigate('/login');
             })
@@ -92,7 +92,7 @@ const FullBlogPage = () => {
     const canEditOrDelete = loggedUser && blogData && loggedUser._id === blogData.author._id;
     return (
       <div className="full-blog-container">
-        <div className="header">
+        <div className="head">
           
             <FontAwesomeIcon onClick={handleGoBack} className='back-arrow' icon={faArrowLeft} />
      

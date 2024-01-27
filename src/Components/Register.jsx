@@ -49,41 +49,41 @@ const Register= () => {
       <form className="login-form" onSubmit={handleSubmit}>
         <h2>Register</h2>
         <div className="form-group">
-          <label htmlFor="username">Username:</label>
           <input
             type="text"
             id="username"
             value={username}
+            placeholder='Full Name'
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"
             value={email}
+            placeholder='Email Id'
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input
+         <input
             type="password"
             id="password"
             value={password}
+            placeholder='Set a Password'
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm Password:</label>
           <input
             type="password"
             id="confirmPassword"
             value={confirmPassword}
+            placeholder='Confirm Password'
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />

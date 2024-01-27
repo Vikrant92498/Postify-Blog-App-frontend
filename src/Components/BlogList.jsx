@@ -15,9 +15,10 @@ const BlogList = () => {
             console.log(err);
         })
     },[]) 
+    if(!blogs) return (<Loading/>)
   return ( 
     <div className='blog-container'>
-      {blogs?(
+      {blogs && (
          blogs.map(blog => (
             <BlogBox
               key={blog.id}
@@ -30,7 +31,7 @@ const BlogList = () => {
               likedBy={blog.likedBy}
             />
           ))
-      ):(<Loading/>)}
+      )}
     </div>
   )
 }

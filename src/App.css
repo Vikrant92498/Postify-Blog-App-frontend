@@ -3,8 +3,8 @@
   background-color: #66fb61;
 }
 .app-container{
-    background: radial-gradient(rgb(0, 76, 255),rgb(187, 0, 255));
-    background-repeat: no-repeat;
+  background: radial-gradient(rgb(0, 255, 225),rgb(171 0 255));
+  background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
 }

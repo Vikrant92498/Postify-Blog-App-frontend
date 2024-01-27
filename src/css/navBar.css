@@ -1,45 +1,72 @@
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: black;
+  box-shadow: 3px 3px 11px 1px;
+}
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #af83ff;
-    padding: 10px;
-  }
-  
-  .navbar__left {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar__title {
-    margin: 0;
-    cursor: pointer;
-  }
-  
-  .navbar__right {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar__list {
-    list-style: none;
-    display: flex;
-    justify-content: flex-end;
-    margin: 0;
-    padding: 0;
-  }
-  .navbar__item {
-    margin-left: 10px;
-  }
-  .navbar__link {
-    color: #ffffff;
-    text-decoration: none;
-    padding: 16px 8px;
-    font-weight: 500;
-  }
-  
-  /* Hover effect for the links */
-  .navbar__link:hover {
-    background-color: #c09eff;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  width:94%;
+}
+.logo{
+  margin: 0;
+}
+.navbar .logo a {
+  font-size: 1.8rem;
+  text-decoration: none;
+  color: #fff;
+}
+.navbar .links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 35px;
+}
+.navbar .links a {
+  font-weight: 500;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 0;
+  transition: 0.2s ease;
+}
+.navbar .links a:hover {
+  color: #47b2e4;
+}
+.navbar .buttons a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  padding: 15px 0;
+  transition: 0.2s ease;
+}
+.buttons .button:hover {
+  text-decoration: none;
+  color: #b74949;
+  font-size: 1rem;
+  padding: 15px 0;
+  transition: 0.2s ease;
+}
+.button span{
+  cursor: pointer;;
+}
+.navbar .buttons a:not(:last-child) {
+  margin-right: 30px;
+}
+.navbar .buttons .signin:hover {
+  color: #47b2e4;
+}
+.navbar .buttons .signup {
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  border-radius: 0.375rem;
+  text-align: center;
+  transition: 0.2s ease;
+}
+.navbar .buttons .signup:hover {
+  background-color: #47b2e4;
+  color: #fff;
+}

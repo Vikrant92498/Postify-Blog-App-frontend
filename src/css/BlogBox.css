@@ -9,10 +9,7 @@
   word-wrap: break-word;;
   transition: transform 0.2s ease-in-out;
 }
-.blog-box:hover{
-  transform: scale(1.05);
-  
-}
+ 
 
 .blog-box img {
   width: 93%;

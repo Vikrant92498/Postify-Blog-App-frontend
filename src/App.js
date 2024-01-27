@@ -23,7 +23,6 @@ const App = () => {
     <Router>
       <div className="app-container">
         <NavBar />
-        
       <Routes>
         <Route exact path="/" element={<BlogList/>} />
         <Route path="/blog/:id" element={<FullBlog/>} />
